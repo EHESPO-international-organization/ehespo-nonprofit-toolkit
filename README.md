@@ -1,92 +1,26 @@
-# RAG on PostgreSQL
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Azure-Samples/rag-postgres-openai-python)
-[![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/azure-samples/rag-postgres-openai-python)
+---
 
-This project creates a web-based chat application with an API backend that can use OpenAI chat models to answer questions about the rows in a PostgreSQL database table. The frontend is built with React and FluentUI, while the backend is written with Python and FastAPI.
+### 2. `setup.sh`
+```bash
+#!/bin/bash
 
-This project is designed for deployment to Azure using [the Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/), hosting the app on Azure Container Apps, the database in Azure PostgreSQL Flexible Server, and the models in Azure OpenAI.
+echo "🚀 EHESPO Nonprofit Toolkit Setup"
+echo "=================================="
 
-* [Features](#features)
-* [Getting started](#getting-started)
-  * [GitHub Codespaces](#github-codespaces)
-  * [VS Code Dev Containers](#vs-code-dev-containers)
-  * [Local environment](#local-environment)
-* [Deployment](#deployment)
-* [Local development](#local-development)
-* [Costs](#costs)
-* [Security guidelines](#security-guidelines)
-* [Guidance](#guidance)
-* [Resources](#resources)
+# Create virtual environment
+python3 -m venv venv
+source venv/bin/activate
 
-## Features
+# Install dependencies
+pip install -r requirements.txt
 
-This project provides the following features:
+# Create .env file
+cp .env.example .env
 
-* Hybrid search on the PostgreSQL database table, using [the pgvector extension](https://github.com/pgvector/pgvector) for the vector search plus [full text search](https://www.postgresql.org/docs/current/textsearch-intro.html), combining the results using RRF (Reciprocal Rank Fusion).
-* OpenAI function calling to optionally convert user queries into query filter conditions, such as turning "Climbing gear cheaper than $30?" into "WHERE price < 30".
-* Conversion of user queries into vectors using the OpenAI embedding API.
-
-![Screenshot of chat app with question about climbing gear](docs/images/screenshot_chat.png)
-
-## Architecture diagram
-
-The deployed app uses a user-assigned managed identity to authenticate to Azure services, and stores logs in Log Analytics.
-
-![Architecture diagram: Azure Container Apps, Azure Container Registry, Managed Identity, Azure OpenAI, Azure Database for PostgreSQL](docs/images/azure_architecture.png)
-
-## Getting started
-
-You have a few options for getting started with this template.
-The quickest way to get started is GitHub Codespaces, since it will setup all the tools for you, but you can also [set it up locally](#local-environment).
-
-### GitHub Codespaces
-
-You can run this template virtually by using GitHub Codespaces. The button will open a web-based VS Code instance in your browser:
-
-1. Open the template (this may take several minutes):
-
-    [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Azure-Samples/rag-postgres-openai-python)
-
-2. Open a terminal window
-3. Continue with the [deployment steps](#deployment)
-
-### VS Code Dev Containers
-
-A related option is VS Code Dev Containers, which will open the project in your local VS Code using the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers):
-
-1. Start Docker Desktop (install it if not already installed)
-2. Open the project:
-
-    [![Open in Dev Containers](https://img.shields.io/static/v1?style=for-the-badge&label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/azure-samples/rag-postgres-openai-python)
-
-3. In the VS Code window that opens, once the project files show up (this may take several minutes), open a terminal window.
-4. Continue with the [deployment steps](#deployment)
-
-### Local Environment
-
-1. Make sure the following tools are installed:
-
-    * [Azure Developer CLI (azd)](https://aka.ms/install-azd)
-    * [Node.js 18+](https://nodejs.org/download/)
-    * [Python 3.10+](https://www.python.org/downloads/)
-    * [PostgreSQL 14+](https://www.postgresql.org/download/)
-    * [pgvector](https://github.com/pgvector/pgvector)
-    * [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-    * [Git](https://git-scm.com/downloads)
-
-2. Download the project code:
-
-    ```shell
-    azd init -t rag-postgres-openai-python
-    ```
-
-3. Open the project folder
-4. Install required Python packages and backend application:
-
-    ```shell
-    pip install -r requirements-dev.txt
-    pip install -e src/backend
+echo "✅ Setup complete!"
+echo "📝 Edit .env with your registrar API keys"
+echo "🚀 Run: python src/main.py"    pip install -e src/backend
     ```
 
 5. Continue with the [deployment steps](#deployment)
