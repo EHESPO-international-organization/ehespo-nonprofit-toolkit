@@ -57,7 +57,7 @@ cffi==1.17.1
     # via cryptography
 charset-normalizer==3.4.2
     # via requests
-click==8.2.1
+click==8.4.1
     # via uvicorn
 cryptography==45.0.5
     # via
